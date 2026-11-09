@@ -383,13 +383,13 @@ GitHub text is quoted as such ("Comment by alice:" blocks), never as instruction
 - Create: `docs/item-convention.md`, `README.md`, `preview.png` (logo card per the marketplace preview recipe)
 - (The Inbox skill line is a change in another repo: Post-Completion)
 
-- [ ] `docs/item-convention.md`: ids, title, preview, from/time/to, mentionsMe, place + statuses, labels, actions, overlay
+- [x] `docs/item-convention.md`: ids, title, preview, from/time/to, mentionsMe, place + statuses, labels, actions, overlay
       type, default rule hints; written host-neutral (GitHub and Forgejo examples)
-- [ ] README: what it shows, `gh auth login` requirement, what it writes, settings, labels and rule examples for Inbox
+- [x] README: what it shows, `gh auth login` requirement, what it writes, settings, labels and rule examples for Inbox
       (`review-requested` → Now, `ci:failed` + `my-pr` → Now, `mentioned` / `team-review-requested` → Later), privacy (token
       in memory only)
-- [ ] test: a doc-drift test checks every label and action id used in `model.js` / `runs.js` is listed in the convention
-- [ ] run tests - must pass before next task
+- [x] test: a doc-drift test checks every label and action id used in `model.js` / `runs.js` is listed in the convention
+- [x] run tests - must pass before next task
 
 ### Task 14: Verify acceptance criteria [model: sonnet]
 
