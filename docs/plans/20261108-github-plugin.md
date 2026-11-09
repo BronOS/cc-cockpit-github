@@ -211,22 +211,22 @@ GitHub text is quoted as such ("Comment by alice:" blocks), never as instruction
 - Create: `dist/lib/client.js`
 - Create: `test/client.test.js`
 
-- [ ] `createClient({ fetch, auth, now, log })`: `rest(method, path, { query, accept, body })` and `graphql(query, vars)`;
+- [x] `createClient({ fetch, auth, now, log })`: `rest(method, path, { query, accept, body })` and `graphql(query, vars)`;
       base `https://api.github.com` only (a path is checked to start with `/` and contain no `//` or scheme), headers
       `Authorization: Bearer`, `Accept`, `X-GitHub-Api-Version: 2022-11-28`, `User-Agent: cc-cockpit-github`
-- [ ] 401 → `auth.refresh()` and one retry; rate limit (403/429 with `x-ratelimit-remaining: 0` or `retry-after`) →
+- [x] 401 → `auth.refresh()` and one retry; rate limit (403/429 with `x-ratelimit-remaining: 0` or `retry-after`) →
       `blockedUntil`, later calls reject at once with a `RateLimited` error carrying the time
-- [ ] GraphQL: `errors[].type === 'RATE_LIMITED'` (HTTP 200) → same block as a REST rate limit; other `errors` with
+- [x] GraphQL: `errors[].type === 'RATE_LIMITED'` (HTTP 200) → same block as a REST rate limit; other `errors` with
       `data` → return data plus `partialErrors`; `errors` without data → reject
-- [ ] `restRedirect(path)`: `redirect: 'manual'`, returns the `Location` only when it is an absolute https URL; `fetchBlob(url,
+- [x] `restRedirect(path)`: `redirect: 'manual'`, returns the `Location` only when it is an absolute https URL; `fetchBlob(url,
       { tailBytes })` fetches it with no `Authorization` header and a `Range: bytes=-N` (a 200 without range support is read
       to the end with only the last N bytes kept)
-- [ ] response size caps (text read with a byte limit: 5 MB JSON, 64 KB per log, 1 MB diff total enforced by caller)
-- [ ] timeouts with AbortController (20 s), network errors → `NetworkError`
-- [ ] write tests for each path: headers, base url refusal, 401 retry, rate limit block and release, GraphQL
+- [x] response size caps (text read with a byte limit: 5 MB JSON, 64 KB per log, 1 MB diff total enforced by caller)
+- [x] timeouts with AbortController (20 s), network errors → `NetworkError`
+- [x] write tests for each path: headers, base url refusal, 401 retry, rate limit block and release, GraphQL
       `RATE_LIMITED` in a 200, GraphQL partial, timeout, redirect: http Location refused, the token is not sent to the
       blob URL, Range tail
-- [ ] run tests - must pass before next task
+- [x] run tests - must pass before next task
 
 ### Task 5: Search queries and the item model [model: opus]
 
