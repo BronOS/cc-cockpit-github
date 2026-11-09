@@ -2,5 +2,10 @@
   "name": "cc-cockpit-github",
   "private": true,
   "description": "Tests for the bronos.github cc-cockpit plugin; the plugin itself needs no install or build.",
-  "scripts": { "test": "node --test test/" }
+  "scripts": {
+    "test": "node --test test/"
+  },
+  "devDependencies": {
+    "linkedom": "0.18.14"
+  }
 }

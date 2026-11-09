@@ -17,6 +17,7 @@ const { createNotifications } = require('./lib/notifications')
 const { createFeed, actionsOf } = require('./lib/feed')
 const { createPoller } = require('./lib/poll')
 const details = require('./lib/details')
+const { createOverlays } = require('./lib/overlay')
 
 const PANEL = 'main'
 const RUNS_EVERY = 5 * 60_000
@@ -90,7 +91,7 @@ function start(ctx, deps = {}) {
   let lastError = ''
   // Run attempts this host re-ran (`runId.attempt`): one re-run per attempt, whoever asks.
   const attempts = new Set()
-  // `open` is replaced by the overlay (lib/overlay.js) once it is wired; until then items open on the web.
+  // `open` is the overlay (lib/overlay.js), set below once the feed exists.
   const hooks = {
     open: async (item) => openWeb(item),
     rerun: async (item) => {
@@ -274,6 +275,18 @@ function start(ctx, deps = {}) {
     poller.now()
   }
 
+  const overlays = createOverlays({
+    ctx,
+    getItem: (id) => feed.current(id),
+    fetchDetails: (item) => details.detailsOf(client, item, log),
+    onOpened: async (item) => {
+      if (settings.markReadOnOpen && !item.read) await mark(item, 'markRead')
+    },
+    act: (id, action) => feed.provider.act(id, action),
+    log,
+  })
+  hooks.open = (item) => overlays.open(item)
+
   const disposers = []
   const ready = (async () => {
     await restore()
@@ -281,6 +294,7 @@ function start(ctx, deps = {}) {
     disposers.push(ctx.panels.onMessage(PANEL, onPanelMessage))
     if (typeof ctx.panels.onAction === 'function') disposers.push(ctx.panels.onAction(PANEL, (id) => id === 'refresh' && poller.now()))
     disposers.push(ctx.onSettingsChange(onSettings))
+    disposers.push(overlays.register())
     postState()
     poller.now()
   })()

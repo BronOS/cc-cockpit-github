@@ -340,24 +340,24 @@ GitHub text is quoted as such ("Comment by alice:" blocks), never as instruction
 - Modify: `dist/host.js` (open overlay, `ctx.overlay.buttons('inbox-item', ...)`, `onDiscuss`)
 - Create: `test/sanitize.test.js`, `test/itemview.test.js`
 
-- [ ] host opens `html` overlay `panels/item.html` with `type: { name: 'inbox-item', data: { source: 'bronos.github', id } }`,
+- [x] host opens `html` overlay `panels/item.html` with `type: { name: 'inbox-item', data: { source: 'bronos.github', id } }`,
       `ready: 'manual'`, size `large`; posts details when fetched; markRead on open when the setting is on; a refused open
       (3 open, 10 a minute) is reported to the caller (`act` → `{ ok: false, message }`, panel → its message line)
-- [ ] `sanitize.js`: DOMParser allow-list (tags as the reviewer's list, attributes `href` on `a` only when http(s), no
+- [x] `sanitize.js`: DOMParser allow-list (tags as the reviewer's list, attributes `href` on `a` only when http(s), no
       `img src` remote: replaced by a link, no style/class/id/on*), tested under a real HTML parser (a dev-only DOM library
       in `devDependencies`, e.g. linkedom or happy-dom; the plugin itself ships no dependency) with hostile fixtures
       (script, svg onload, javascript: link, `<img src=x onerror>`, nested forms, data: urls, mXSS-style nesting)
-- [ ] `itemview.js`: PR tabs Conversation / Checks / Files, issue view, run view; logs and diffs as text in `<pre>`
-- [ ] links: the host extracts the http(s) hrefs from the HTML it posts (and the item/check/run URLs it built) into a
+- [x] `itemview.js`: PR tabs Conversation / Checks / Files, issue view, run view; logs and diffs as text in `<pre>`
+- [x] links: the host extracts the http(s) hrefs from the HTML it posts (and the item/check/run URLs it built) into a
       per-overlay set; the page sends only an index or the href back, and the host opens it with `ctx.openExternal` only
       when it is in that set (never a URL from the page as is), after the page's in-page confirm
-- [ ] overlay buttons for the item's current actions (not `open`) only when `info.opener` is trusted (this plugin, as
+- [x] overlay buttons for the item's current actions (not `open`) only when `info.opener` is trusted (this plugin, as
       Jira's `trustedOpener`), `data.source` is ours and the id is current; `run` calls the same code as `act`
-- [ ] style per `ccc guide style` (component classes, theme tokens; no own colours)
-- [ ] write tests: sanitiser cases, view builders produce expected structure for PR/issue/run fixtures, buttons provider
+- [x] style per `ccc guide style` (component classes, theme tokens; no own colours)
+- [x] write tests: sanitiser cases, view builders produce expected structure for PR/issue/run fixtures, buttons provider
       answers only for a trusted opener and our own current ids, link opening refused for a URL not in the host's set,
       overlay refusal reported
-- [ ] run tests - must pass before next task
+- [x] run tests - must pass before next task
 
 ### Task 12: GitHub panel [model: sonnet]
 
