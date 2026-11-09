@@ -89,6 +89,7 @@ function start(ctx, deps = {}) {
   let failures = []
   let runsAt = 0
   let lastError = ''
+  let lastSummary = ''
   // Run attempts this host re-ran (`runId.attempt`): one re-run per attempt, whoever asks.
   const attempts = new Set()
   // `open` is the overlay (lib/overlay.js), set below once the feed exists.
@@ -241,6 +242,12 @@ function start(ctx, deps = {}) {
       if (settings.lanes.myPrs) linkPrRuns(items, failures)
       const visible = await seen.apply(items.concat(runItems))
       feed.setItems(visible, now())
+      // One line when the picture changes (not every 2 minutes), so `ccc plugin logs` tells a working poll from
+      // silence: the first manual test could not tell "polled fine" from "never ran".
+      const unread = visible.filter((i) => !i.read).length
+      const summary = `${me}: ${items.length} PRs/issues, ${runItems.length} failed runs, ${unread} unread`
+      if (summary !== lastSummary || lastError) log.info(`github: poll ok as ${summary}`)
+      lastSummary = summary
       lastError = ''
       await storeList()
       postState()

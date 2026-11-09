@@ -206,3 +206,16 @@ test('the header Refresh action polls again', async () => {
   await flush()
   assert.ok(gh.calls.filter((c) => c.url.endsWith('/graphql')).length > before)
 })
+
+test('a poll logs one line when the picture changes, not on every poll', async () => {
+  const world = { myPrs: [prNode(1)] }
+  const { ctx, h } = await boot(world)
+  const oks = () => ctx.logs.filter((l) => JSON.stringify(l).includes('poll ok')).length
+  assert.equal(oks(), 1)
+  await h.pollOnce()
+  assert.equal(oks(), 1)
+  world.myPrs = [prNode(1), prNode(2)]
+  await h.pollOnce()
+  assert.equal(oks(), 2)
+  assert.match(JSON.stringify(ctx.logs.at(-1)), /me: 2 PRs\/issues, 0 failed runs/)
+})

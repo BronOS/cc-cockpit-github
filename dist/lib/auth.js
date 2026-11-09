@@ -43,7 +43,13 @@ function createAuth({ exec, fetch, ghPath, log }) {
       return null
     }
     if (!r || r.code !== 0) {
-      log.warn(`github: ${ghPath} auth token exited ${r ? r.code : '?'} (signed out, or gh missing)`)
+      // gh's first stderr line says why (signed out, a keyring it cannot reach, a missing mise tool); a failing
+      // `auth token` prints no token, and anything token-shaped is masked anyway before it reaches the log.
+      const why = String((r && r.stderr) || '')
+        .split('\n')
+        .find((l) => l.trim())
+      const said = why ? `: ${why.trim().slice(0, 200).replace(/\b(gh[opusr]_|github_pat_)[A-Za-z0-9_]+/g, '$1***')}` : ''
+      log.warn(`github: ${ghPath} auth token exited ${r ? r.code : '?'} (signed out, or gh missing)${said}`)
       return null
     }
     const t = String(r.stdout || '').trim()

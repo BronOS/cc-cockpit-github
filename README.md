@@ -21,7 +21,7 @@ labels your Inbox rules can use.
 
 ## Requirements
 
-- cc-cockpit 0.15 or newer.
+- cc-cockpit 0.16.2 or newer (on Linux, older versions keep `gh` from reaching the system keyring, and the plugin stays signed out).
 - The [GitHub CLI](https://cli.github.com/), signed in: `gh auth login`. The plugin asks `gh auth token --hostname
   github.com` for your token and keeps it in memory only. Nothing is stored, no token setting exists, and signing
   out of `gh` signs the plugin out at the next refresh. github.com only (no Enterprise hosts).

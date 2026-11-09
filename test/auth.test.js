@@ -48,10 +48,21 @@ for (const [name, exec] of [
     await assert.rejects(auth.token(), (e) => e.signedOut === true && e.message === SIGNED_OUT_MESSAGE)
     assert.equal(auth.state, 'signedOut')
     assert.match(auth.message, /gh auth login/)
-    assert.ok(!JSON.stringify(ctx.logs).includes('no oauth token'))
+    assert.ok(!auth.message.includes('no oauth token'))
     assert.ok(!JSON.stringify(ctx.logs).includes('secret-ish'))
   })
 }
+
+test("gh's reason reaches the log (one line, token shapes masked), never the message", async () => {
+  const exec = async () => ({ code: 1, stdout: '', stderr: `\nno oauth token found for github.com (was ${TOKEN})\nsecond line\n` })
+  const { ctx, auth } = setup({ exec })
+  await assert.rejects(auth.token())
+  const logged = JSON.stringify(ctx.logs)
+  assert.match(logged, /exited 1 .*: no oauth token found for github\.com/)
+  assert.ok(!logged.includes(TOKEN))
+  assert.ok(!logged.includes('second line'))
+  assert.equal(auth.message, SIGNED_OUT_MESSAGE)
+})
 
 test('a 401 refreshes once and retries with the new token', async () => {
   let n = 0
