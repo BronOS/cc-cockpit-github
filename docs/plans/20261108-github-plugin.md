@@ -253,16 +253,16 @@ GitHub text is quoted as such ("Comment by alice:" blocks), never as instruction
 - Create: `dist/lib/runs.js`
 - Create: `test/runs.test.js`, `test/fixtures/runs-*.json`
 
-- [ ] `repoSet(myPrRepos, pushedRepos, now)`: union, pushed within 7 days, excluded dropped, max 10
-- [ ] `failedRuns(client, repos, login, now)`: per repo failure and success lists, newest failure per workflow_id +
+- [x] `repoSet(myPrRepos, pushedRepos, now)`: union, pushed within 7 days, excluded dropped, max 10
+- [x] `failedRuns(client, repos, login, now)`: per repo failure and success lists, newest failure per workflow_id +
       head_branch only, supersession by a later success of the same pair, 7-day age limit; one repo's error does not
       drop the others (logged)
-- [ ] `runItem(run, me)`: id `run:o/r/<id>`, title `o/r CI failed: <workflow> on <branch>`, labels `run`, `ci:failed`,
+- [x] `runItem(run, me)`: id `run:o/r/<id>`, title `o/r CI failed: <workflow> on <branch>`, labels `run`, `ci:failed`,
       `repo:`, `owner:`, actions incl. `rerun`
-- [ ] link failed runs to PRs: a myPrs PR with `ci:failed` gets the run id of its head SHA (for `rerun` on the PR)
-- [ ] write tests: dedupe (three failures of one workflow+branch → one item, the newest), supersession, age cut, repo
+- [x] link failed runs to PRs: a myPrs PR with `ci:failed` gets the run id of its head SHA (for `rerun` on the PR)
+- [x] write tests: dedupe (three failures of one workflow+branch → one item, the newest), supersession, age cut, repo
       cap, per-repo error isolation, PR linking
-- [ ] run tests - must pass before next task
+- [x] run tests - must pass before next task
 
 ### Task 7: Read state, done and notification threads [model: sonnet]
 
