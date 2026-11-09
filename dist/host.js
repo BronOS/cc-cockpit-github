@@ -16,6 +16,7 @@ const { createSeen } = require('./lib/seen')
 const { createNotifications } = require('./lib/notifications')
 const { createFeed, actionsOf } = require('./lib/feed')
 const { createPoller } = require('./lib/poll')
+const details = require('./lib/details')
 
 const PANEL = 'main'
 const RUNS_EVERY = 5 * 60_000
@@ -87,10 +88,19 @@ function start(ctx, deps = {}) {
   let failures = []
   let runsAt = 0
   let lastError = ''
-  // Hooks the overlay (Task 11) and the details module (Task 10) fill in; until then open goes to the web.
+  // Run attempts this host re-ran (`runId.attempt`): one re-run per attempt, whoever asks.
+  const attempts = new Set()
+  // `open` is replaced by the overlay (lib/overlay.js) once it is wired; until then items open on the web.
   const hooks = {
     open: async (item) => openWeb(item),
-    rerun: async () => ({ ok: false, message: 'Re-run is not available yet.' }),
+    rerun: async (item) => {
+      const r = await details.rerun(client, item, attempts)
+      if (r.ok) {
+        runsAt = 0
+        poller.now()
+      }
+      return r
+    },
   }
 
   async function openWeb(item) {

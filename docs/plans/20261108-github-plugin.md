@@ -320,18 +320,18 @@ GitHub text is quoted as such ("Comment by alice:" blocks), never as instruction
 - Create: `dist/lib/details.js`, `dist/lib/logs.js`
 - Create: `test/details.test.js`, `test/logs.test.js`
 
-- [ ] `prDetails`, `issueDetails`, `runDetails` per Technical Details; plain data for the page (html bodies passed as
+- [x] `prDetails`, `issueDetails`, `runDetails` per Technical Details; plain data for the page (html bodies passed as
       untrusted strings for the page's sanitiser)
-- [ ] `logs.js`: job log through `client.restRedirect` + `fetchBlob` (token never sent to blob storage), tail of 64 KB;
+- [x] `logs.js`: job log through `client.restRedirect` + `fetchBlob` (token never sent to blob storage), tail of 64 KB;
       last 200 lines of the failed step (step boundaries by `##[group]` markers; fallback the tail's last 200 lines),
       ANSI escapes stripped
-- [ ] diff cap: per-file patches until 1 MB total, the rest listed with "too large, open on GitHub"
-- [ ] `rerun(item)`: run id must come from the current item; refused while the run is queued or in progress and when
+- [x] diff cap: per-file patches until 1 MB total, the rest listed with "too large, open on GitHub"
+- [x] `rerun(item)`: run id must come from the current item; refused while the run is queued or in progress and when
       this `run_attempt` was already re-run by us (kept in memory); `POST rerun-failed-jobs`; on success re-poll runs
-- [ ] `discussText(details)`: per Technical Details, with caps; tests check caps and that no token or header text appears
-- [ ] write tests for each, including a log without group markers, a 2 MB diff, rerun refused for an unknown id, a
+- [x] `discussText(details)`: per Technical Details, with caps; tests check caps and that no token or header text appears
+- [x] write tests for each, including a log without group markers, a 2 MB diff, rerun refused for an unknown id, a
       second rerun of the same attempt, and a run in progress
-- [ ] run tests - must pass before next task
+- [x] run tests - must pass before next task
 
 ### Task 11: Item overlay page [model: opus]
 
