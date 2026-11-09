@@ -235,17 +235,17 @@ GitHub text is quoted as such ("Comment by alice:" blocks), never as instruction
 - Create: `dist/lib/model.js` (nodes → items per the convention)
 - Create: `test/fixtures/search-*.json`, `test/model.test.js`, `test/search.test.js`
 
-- [ ] query builder per lane (only enabled lanes), `archived:false`, results mapped by lane; issues assignee+mentions merged
-- [ ] `prItem(node, lane, me)`, `issueItem(node, lanes, me)`: id, rev, title, preview, time, from, to, mentionsMe,
+- [x] query builder per lane (only enabled lanes), `archived:false`, results mapped by lane; issues assignee+mentions merged
+- [x] `prItem(node, lane, me)`, `issueItem(node, lanes, me)`: id, rev, title, preview, time, from, to, mentionsMe,
       place (status: draft / conflict / failing / changes requested / approved / open, in that priority), labels, actions
-- [ ] team review request → `to: 'group'`, `team-review-requested`; own review request → `direct`
-- [ ] `rev` per Technical Details: the person's own comments/reviews left out, the check part moves only into failure
-- [ ] excluded owners/repos dropped; a PR in both reviewRequested and myPrs cannot happen (author vs reviewer) but ids are deduped anyway
-- [ ] all strings capped to the feed's limits (title 300, preview 1000, place 120, labels 40)
-- [ ] write tests per field with fixtures: draft PR, CI failure, changes requested, conflict, team request, mention detection
+- [x] team review request → `to: 'group'`, `team-review-requested`; own review request → `direct`
+- [x] `rev` per Technical Details: the person's own comments/reviews left out, the check part moves only into failure
+- [x] excluded owners/repos dropped; a PR in both reviewRequested and myPrs cannot happen (author vs reviewer) but ids are deduped anyway
+- [x] all strings capped to the feed's limits (title 300, preview 1000, place 120, labels 40)
+- [x] write tests per field with fixtures: draft PR, CI failure, changes requested, conflict, team request, mention detection
       (`@alice` vs `@alicex` vs email), issue in both queries, long title cut; rev unchanged by my own comment, my own
       review and a PENDING → SUCCESS push, changed by another person's comment and by a new failure
-- [ ] run tests - must pass before next task
+- [x] run tests - must pass before next task
 
 ### Task 6: Failed-run discovery [model: sonnet]
 

@@ -1,0 +1,50 @@
+{
+  "data": {
+    "search": {
+      "issueCount": 2,
+      "pageInfo": { "hasNextPage": false, "endCursor": "Y3Vyc29yOjI=" },
+      "nodes": [
+        {
+          "__typename": "PullRequest",
+          "id": "PR_kwDOAAAA01",
+          "number": 41,
+          "title": "Add retry to the uploader",
+          "url": "https://github.com/acme/widgets/pull/41",
+          "isDraft": false,
+          "createdAt": "2026-11-07T09:00:00Z",
+          "updatedAt": "2026-11-08T10:00:00Z",
+          "author": { "login": "alice" },
+          "repository": { "nameWithOwner": "acme/widgets" },
+          "headRefName": "uploader-retry",
+          "baseRefName": "main",
+          "reviewDecision": "REVIEW_REQUIRED",
+          "mergeable": "MERGEABLE",
+          "reviewRequests": { "nodes": [{ "requestedReviewer": { "__typename": "User", "login": "me" } }] },
+          "latestReviews": { "nodes": [] },
+          "comments": { "nodes": [{ "author": { "login": "bob" }, "createdAt": "2026-11-08T09:30:00Z", "bodyText": "@me could you look at the backoff?" }] },
+          "commits": { "nodes": [{ "commit": { "oid": "a1b2c3d4", "statusCheckRollup": { "state": "SUCCESS" } } }] }
+        },
+        {
+          "__typename": "PullRequest",
+          "id": "PR_kwDOAAAA02",
+          "number": 7,
+          "title": "Bump the parser",
+          "url": "https://github.com/globex/core/pull/7",
+          "isDraft": false,
+          "createdAt": "2026-11-06T09:00:00Z",
+          "updatedAt": "2026-11-06T10:00:00Z",
+          "author": { "login": "carol" },
+          "repository": { "nameWithOwner": "globex/core" },
+          "headRefName": "bump",
+          "baseRefName": "main",
+          "reviewDecision": null,
+          "mergeable": "UNKNOWN",
+          "reviewRequests": { "nodes": [{ "requestedReviewer": { "__typename": "Team", "name": "Platform", "slug": "platform" } }] },
+          "latestReviews": { "nodes": [] },
+          "comments": { "nodes": [] },
+          "commits": { "nodes": [{ "commit": { "oid": "e5f6", "statusCheckRollup": null } }] }
+        }
+      ]
+    }
+  }
+}
