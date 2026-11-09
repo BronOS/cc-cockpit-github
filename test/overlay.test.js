@@ -97,10 +97,16 @@ test('buttons: only on overlays we opened, for our own current items; run goes t
   assert.deepEqual(provider(info({ type: { name: 'inbox-item', data: { source: 'bronos.github', id: 'pr:acme/gone#1' } } })), [])
   assert.deepEqual(provider(null), [])
   const buttons = provider(info())
-  assert.deepEqual(buttons.map((b) => b.id), ['markRead', 'done', 'openWeb'])
+  // Open on GitHub first, Done last and labelled apart (the manual test hit Done for Open on GitHub).
+  assert.deepEqual(buttons.map((b) => [b.id, b.label, b.icon]), [
+    ['openWeb', 'Open on GitHub', 'open-external'],
+    ['markRead', 'Mark read', undefined],
+    ['done', 'Mark done', 'check'],
+  ])
   assert.equal(await buttons[0].run(), undefined)
-  assert.deepEqual(await buttons[1].run(), { close: true })
-  assert.deepEqual(acted, [[item.id, 'markRead'], [item.id, 'done']])
+  assert.equal(await buttons[1].run(), undefined)
+  assert.deepEqual(await buttons[2].run(), { close: true })
+  assert.deepEqual(acted, [[item.id, 'openWeb'], [item.id, 'markRead'], [item.id, 'done']])
 })
 
 test('buttons: a refused action shows its message (the app shows a throw)', async () => {

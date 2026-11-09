@@ -59,6 +59,12 @@ function linksOf(d) {
  * `ctx`, `getItem(id)` (the current item or null), `fetchDetails(item)`, `onOpened(item)` (mark read on open),
  * `act(id, action)` (the feed's act). Returns `{ open, register }`.
  */
+/** Toolbar order (`mark` is Mark read or Mark unread, whichever applies), at most 4. */
+const TOOLBAR = ['openWeb', 'rerun', 'mark', 'done']
+const TOOLBAR_LABEL = { done: 'Mark done' }
+/** Core icon names (`ccc guide api`, overlay buttons). */
+const TOOLBAR_ICON = { openWeb: 'open-external', rerun: 'refresh', done: 'check' }
+
 function createOverlays({ ctx, getItem, fetchDetails, onOpened, act, log }) {
   /** Open an item's overlay: `{ ok }`, or `{ ok: false, message }` when the app refused it. */
   async function open(item) {
@@ -122,7 +128,13 @@ function createOverlays({ ctx, getItem, fetchDetails, onOpened, act, log }) {
     return { ok: true }
   }
 
-  /** The toolbar buttons of our `inbox-item` overlays. */
+  /**
+   * The toolbar buttons of our `inbox-item` overlays. Order, icons and the done label differ from the feed's
+   * actions on purpose: in the first manual test "Done on GitHub" sat right after Mark read and next to "Open on
+   * GitHub", and a click meant to open the page marked the item done instead. So Open on GitHub comes first with
+   * its icon, Done last as "Mark done" (Inbox's menus keep "Done on GitHub": there it must differ from Inbox's own
+   * Done, on our own toolbar it need not).
+   */
   function register() {
     if (typeof ctx.overlay.buttons !== 'function') return null
     return ctx.overlay.buttons('inbox-item', (info) => {
@@ -131,12 +143,13 @@ function createOverlays({ ctx, getItem, fetchDetails, onOpened, act, log }) {
       if (!d || d.source !== ctx.pluginId || typeof d.id !== 'string') return []
       const item = getItem(d.id)
       if (!item) return []
-      return actionsOf(item)
-        .filter((a) => a.id !== 'open')
-        .slice(0, 4)
+      const ours = actionsOf(item).filter((a) => a.id !== 'open')
+      return TOOLBAR.map((id) => ours.find((a) => a.id === id || (id === 'mark' && /^mark(Read|Unread)$/.test(a.id))))
+        .filter(Boolean)
         .map((a) => ({
           id: a.id,
-          label: a.label,
+          label: TOOLBAR_LABEL[a.id] || a.label,
+          ...(TOOLBAR_ICON[a.id] ? { icon: TOOLBAR_ICON[a.id] } : {}),
           run: async () => {
             const r = await act(item.id, a.id)
             if (r && r.ok === false) throw new Error(r.message)
