@@ -287,18 +287,18 @@ GitHub text is quoted as such ("Comment by alice:" blocks), never as instruction
 - Create: `dist/lib/feed.js`
 - Create: `test/feed.test.js`
 
-- [ ] `describe()` → label `GitHub`, badge `GH`, color `violet`, kind `issues`, scope from settings ("Review requests,
+- [x] `describe()` → label `GitHub`, badge `GH`, color `violet`, kind `issues`, scope from settings ("Review requests,
       your PRs, issues, failed runs; excludes 2 owners")
-- [ ] `features()` → `[]`; `snapshot()` from the cache, which is loaded from `ctx.appStorage` at start (the last list
+- [x] `features()` → `[]`; `snapshot()` from the cache, which is loaded from `ctx.appStorage` at start (the last list
       and its `asOf`, keyed by login) and answered as `state: 'error'`, "Not refreshed yet" until the first poll
       succeeds; `sync` with `state`/`message`/`asOf`; the list is persisted after each successful poll
-- [ ] item/gone diff per poll (any field change → `item`; missing id → `gone` in chunks of 500); done items count as gone
-- [ ] `act(id, action)`: id must be a current item and action in its actions; runs markRead/markUnread/done/openWeb
+- [x] item/gone diff per poll (any field change → `item`; missing id → `gone` in chunks of 500); done items count as gone
+- [x] `act(id, action)`: id must be a current item and action in its actions; runs markRead/markUnread/done/openWeb
       itself and `open` / `rerun` through injected callbacks (`onOpen`, `onRerun`, wired in Tasks 10-11; stubs in tests),
       the same functions the panel and overlay use; returns `{ ok, message }` (≤ 300)
-- [ ] write tests modelled on Jira's `feed.test.js`: diff, chunking, refusal of unknown id/action, signedOut/error sync,
+- [x] write tests modelled on Jira's `feed.test.js`: diff, chunking, refusal of unknown id/action, signedOut/error sync,
       snapshot after a restart answers the stored list (not empty `ok`), callbacks called for open/rerun
-- [ ] run tests - must pass before next task
+- [x] run tests - must pass before next task
 
 ### Task 9: Poller and host wiring [model: opus]
 
