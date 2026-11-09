@@ -3,7 +3,8 @@
 How a code-host plugin (GitHub, Forgejo, Gitea, GitLab...) shapes its `inbox-feed` v2 items, so the person's Inbox and
 Autopilot rules work the same whichever host an item comes from. The feed contract itself (fields, caps, events) is
 the Inbox's: `cc-cockpit-inbox/docs/design-v2.md`, "The feed contract" and "The item". This page only fixes the
-values. `bronos.github` follows it; a Forgejo source should too.
+values. `bronos.github` and `bronos.gitea` (Gitea and Forgejo, [cc-cockpit-gitea](https://github.com/BronOS/cc-cockpit-gitea))
+follow it; on Gitea and Forgejo a failed run's `<runId>` is the run's number in its repo (`run_number`).
 
 ## What is an item
 
