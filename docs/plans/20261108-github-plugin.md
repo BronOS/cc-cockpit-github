@@ -181,12 +181,12 @@ GitHub text is quoted as such ("Comment by alice:" blocks), never as instruction
 - Create: `dist/lib/settings.js`
 - Create: `test/settings.test.js`
 
-- [ ] `normalize(raw)` → `{ lanes, rowsPerLane, markReadOnOpen, exclude, pollMinutes, ghPath }` with clamping and defaults
-- [ ] `exclude` parsing: `owner` or `owner/repo`, lower-cased, invalid entries dropped and reported
-- [ ] `ghPath` check: bare name `[A-Za-z0-9._-]+` or absolute path; otherwise `gh` plus a warning
-- [ ] `isExcluded(nameWithOwner, settings)`
-- [ ] write tests for defaults, clamps, exclude parsing, ghPath accept/refuse (`gh;rm`, relative `./gh`, `/opt/gh`)
-- [ ] run tests - must pass before next task
+- [x] `normalize(raw)` → `{ lanes, rowsPerLane, markReadOnOpen, exclude, pollMinutes, ghPath }` with clamping and defaults
+- [x] `exclude` parsing: `owner` or `owner/repo`, lower-cased, invalid entries dropped and reported
+- [x] `ghPath` check: bare name `[A-Za-z0-9._-]+` or absolute path; otherwise `gh` plus a warning
+- [x] `isExcluded(nameWithOwner, settings)`
+- [x] write tests for defaults, clamps, exclude parsing, ghPath accept/refuse (`gh;rm`, relative `./gh`, `/opt/gh`)
+- [x] run tests - must pass before next task
 
 ### Task 3: Sign-in through gh [model: opus]
 
