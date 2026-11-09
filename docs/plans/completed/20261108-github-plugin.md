@@ -393,17 +393,17 @@ GitHub text is quoted as such ("Comment by alice:" blocks), never as instruction
 
 ### Task 14: Verify acceptance criteria [model: sonnet]
 
-- [ ] verify all requirements from Overview are implemented
-- [ ] verify edge cases are handled (signed out, rate limit, empty lanes, excluded repos, huge diff/log)
-- [ ] run full test suite: `npm test`
-- [ ] grep the repo for any work data (employer names, real private repos, emails other than the author's)
-- [ ] verify the token never appears in logs/posts/emits (test from Task 3 still green)
+- [x] verify all requirements from Overview are implemented
+- [x] verify edge cases are handled (signed out, rate limit, empty lanes, excluded repos, huge diff/log)
+- [x] run full test suite: `npm test`
+- [x] grep the repo for any work data (employer names, real private repos, emails other than the author's)
+- [x] verify the token never appears in logs/posts/emits (test from Task 3 still green)
 
 ### Task 15: [Final] Update documentation [model: sonnet]
 
-- [ ] update README.md if needed
-- [ ] add a short CLAUDE.md for the repo (layout, test command, the convention doc is shared with Forgejo)
-- [ ] move this plan to `docs/plans/completed/`
+- [x] update README.md if needed
+- [x] add a short CLAUDE.md for the repo (layout, test command, the convention doc is shared with Forgejo)
+- [x] move this plan to `docs/plans/completed/`
 
 ## Post-Completion
 
