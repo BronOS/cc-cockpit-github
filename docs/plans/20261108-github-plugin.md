@@ -165,15 +165,15 @@ GitHub text is quoted as such ("Comment by alice:" blocks), never as instruction
 - Create: `test/fakes.js`, `test/fixtures/` (empty README stating fixtures are made up)
 - Create: `test/manifest.test.js`
 
-- [ ] `plugin.json`: id `bronos.github`, version 0.1.0, api 1, main `dist/host.js`, panel `main` (right zone,
+- [x] `plugin.json`: id `bronos.github`, version 0.1.0, api 1, main `dist/host.js`, panel `main` (right zone,
       `panels/main.html`), `services.provides { "inbox-feed": 2 }`, settings schema per Technical Details (no regex,
       no secret field), description saying it uses the `gh` login and what it writes
-- [ ] `package.json` (`"test": "node --test test/"`, private; the only devDependency comes in Task 11), MIT LICENSE (Oleg Bronzov), monochrome GitHub-like
+- [x] `package.json` (`"test": "node --test test/"`, private; the only devDependency comes in Task 11), MIT LICENSE (Oleg Bronzov), monochrome GitHub-like
       octocat-free icon (a generic branch/merge glyph, no GitHub logo)
-- [ ] `test/fakes.js`: fake ctx (exec, services emit/provide, panels post/onMessage, overlay start/buttons,
+- [x] `test/fakes.js`: fake ctx (exec, services emit/provide, panels post/onMessage, overlay start/buttons,
       openExternal, storage, log), fake fetch with route table and request log, fake clock
-- [ ] write tests: manifest is valid JSON with the required fields, settings defaults, no `pattern` keyword anywhere
-- [ ] run tests - must pass before next task
+- [x] write tests: manifest is valid JSON with the required fields, settings defaults, no `pattern` keyword anywhere
+- [x] run tests - must pass before next task
 
 ### Task 2: Settings normalisation [model: sonnet]
 
