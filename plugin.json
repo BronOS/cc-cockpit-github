@@ -1,7 +1,7 @@
 {
   "id": "bronos.github",
   "name": "GitHub",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "api": 1,
   "main": "dist/host.js",
   "description": "Your GitHub work in lanes: pull requests waiting for your review, what happens on your own PRs, issues assigned to or mentioning you, and your failed CI runs, with unread marks and Discuss with Claude. Signs in with your gh CLI login (no token stored). Writes only to re-run failed jobs and to mark GitHub notifications read or done. Provides an inbox-feed for Inbox.",
