@@ -194,16 +194,16 @@ GitHub text is quoted as such ("Comment by alice:" blocks), never as instruction
 - Create: `dist/lib/auth.js`
 - Create: `test/auth.test.js`
 
-- [ ] `createAuth({ exec, fetch, ghPath, log })`: `token()` runs `[ghPath, 'auth', 'token', '--hostname', 'github.com']`
+- [x] `createAuth({ exec, fetch, ghPath, log })`: `token()` runs `[ghPath, 'auth', 'token', '--hostname', 'github.com']`
       (10 s; the fixed host keeps a `GH_HOST` / Enterprise token from ever being sent to api.github.com), trims, checks the
       shape (printable, no whitespace, ≤ 255), keeps it in a closure; `login()` via `GET /user`
-- [ ] `refresh()` re-runs gh once per 401 burst (concurrent callers share one promise)
-- [ ] states: `ok`, `signedOut` (no gh: ENOENT / non-zero exit / empty output; or 401 after refresh) with the message
+- [x] `refresh()` re-runs gh once per 401 burst (concurrent callers share one promise)
+- [x] states: `ok`, `signedOut` (no gh: ENOENT / non-zero exit / empty output; or 401 after refresh) with the message
       "Run `gh auth login` in a terminal, then Refresh", never the token or gh's stderr verbatim in messages
-- [ ] the token is never logged, posted, emitted or put in an error message (a test greps every recorded log/post/emit)
-- [ ] write tests: success, argv exactly as above, gh missing, gh exits 1, empty token, 401 then refresh ok, 401 twice →
+- [x] the token is never logged, posted, emitted or put in an error message (a test greps every recorded log/post/emit)
+- [x] write tests: success, argv exactly as above, gh missing, gh exits 1, empty token, 401 then refresh ok, 401 twice →
       signedOut, token leak check
-- [ ] run tests - must pass before next task
+- [x] run tests - must pass before next task
 
 ### Task 4: GitHub client: REST, GraphQL, rate limits [model: opus]
 
