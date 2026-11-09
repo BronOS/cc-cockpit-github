@@ -307,12 +307,12 @@ GitHub text is quoted as such ("Comment by alice:" blocks), never as instruction
 - Modify: `dist/host.js`
 - Create: `test/poll.test.js`, `test/host.test.js`
 
-- [ ] poller: search every `pollMinutes`, runs every 5 min, refresh on demand (panel button, coalesced), stops on deactivate;
+- [x] poller: search every `pollMinutes`, runs every 5 min, refresh on demand (panel button, coalesced), stops on deactivate;
       lanes off → not queried and not fed; backoff on network error (×2, max 15 min) and on rate limit (until reset)
-- [ ] host: settings change → re-normalise, re-poll; state for panel (`login`, `asOf`, lanes, state, message)
-- [ ] provide `inbox-feed` (Task 8) and post lane data to the panel; panel messages: `refresh`, `open`, `act`
-- [ ] write tests: schedule with fake clock, lane switch off emits gone, rate limit pauses both loops, deactivate clears timers
-- [ ] run tests - must pass before next task
+- [x] host: settings change → re-normalise, re-poll; state for panel (`login`, `asOf`, lanes, state, message)
+- [x] provide `inbox-feed` (Task 8) and post lane data to the panel; panel messages: `refresh`, `open`, `act`
+- [x] write tests: schedule with fake clock, lane switch off emits gone, rate limit pauses both loops, deactivate clears timers
+- [x] run tests - must pass before next task
 
 ### Task 10: Item details, log tails and re-run [model: opus]
 
