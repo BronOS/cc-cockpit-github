@@ -197,3 +197,12 @@ test('storable trims the oldest items until the list fits', () => {
   assert.ok(JSON.stringify(s).length <= 900 * 1024)
   assert.equal(s.items[0].id, 'i2999')
 })
+
+test('the header Refresh action polls again', async () => {
+  const { gh, ctx } = await boot({ myPrs: [prNode(1)] })
+  const before = gh.calls.filter((c) => c.url.endsWith('/graphql')).length
+  await ctx.clickAction('refresh')
+  await flush()
+  await flush()
+  assert.ok(gh.calls.filter((c) => c.url.endsWith('/graphql')).length > before)
+})

@@ -365,17 +365,17 @@ GitHub text is quoted as such ("Comment by alice:" blocks), never as instruction
 - Create: `panels/main.html`, `panels/main.js`, `panels/rowlogic.js`
 - Create: `test/rowlogic.test.js`
 
-- [ ] lanes Review requested, My PRs, Issues, Failed runs (only enabled ones), `rowsPerLane` rows + Show all / Hide
-- [ ] row: unread dot, title, meta (`repo · who did what · when`), state chips; click → open; right-click / context-menu key
+- [x] lanes Review requested, My PRs, Issues, Failed runs (only enabled ones), `rowsPerLane` rows + Show all / Hide
+- [x] row: unread dot, title, meta (`repo · who did what · when`), state chips; click → open; right-click / context-menu key
       → actions menu (component menu classes)
-- [ ] header via `ctx.panels.header` if available: login, "updated N min ago", a refresh action handled with
+- [x] header via `ctx.panels.header` if available: login, "updated N min ago", a refresh action handled with
       `ctx.panels.onAction`; signed-out and error states with the message
-- [ ] handshake: the page posts `hello` on load and the host answers with the full state (`ctx.panels.post` drops messages
+- [x] handshake: the page posts `hello` on load and the host answers with the full state (`ctx.panels.post` drops messages
       sent before the page is there)
-- [ ] style per `ccc guide style`
-- [ ] write tests for row building (chips, meta text, unread), lane folding, empty and signed-out states, state sent on
+- [x] style per `ccc guide style`
+- [x] write tests for row building (chips, meta text, unread), lane folding, empty and signed-out states, state sent on
       `hello`, refresh through `onAction`
-- [ ] run tests - must pass before next task
+- [x] run tests - must pass before next task
 
 ### Task 13: Item convention doc, README and the Inbox skill line [model: sonnet]
 
