@@ -271,15 +271,15 @@ GitHub text is quoted as such ("Comment by alice:" blocks), never as instruction
 - Create: `dist/lib/notifications.js`
 - Create: `test/seen.test.js`, `test/notifications.test.js`
 
-- [ ] `seen.js`: per item id the read rev and the done rev in `ctx.appStorage` under a key per login (account-wide, so
+- [x] `seen.js`: per item id the read rev and the done rev in `ctx.appStorage` under a key per login (account-wide, so
       every window agrees; main serialises the writes), pruned to known ids plus 30 days; `read(item)`, `markRead`,
       `markUnread`, `done` (hidden while rev equals done rev); seeded on the first poll for a login: every current item
       is recorded as read, so a fresh install does not start with everything unread (as Jira's `seen.js` does)
-- [ ] `notifications.js`: thread lookup by subject API url through the item repo's notifications (60 s cache per repo,
+- [x] `notifications.js`: thread lookup by subject API url through the item repo's notifications (60 s cache per repo,
       up to 5 pages), `markThreadRead`, `markThreadDone`; only ids from the fetched list; errors logged, never thrown
-- [ ] write tests: first-poll seeding, unread on rev change, done hides until a new rev, prune, appStorage key per
+- [x] write tests: first-poll seeding, unread on rev change, done hides until a new rev, prune, appStorage key per
       login (a second login starts seeded, not mixed), thread matching across pages, failure isolation
-- [ ] run tests - must pass before next task
+- [x] run tests - must pass before next task
 
 ### Task 8: inbox-feed v2 provider [model: sonnet]
 
