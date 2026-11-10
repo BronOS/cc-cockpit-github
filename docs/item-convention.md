@@ -11,7 +11,7 @@ follow it; on Gitea and Forgejo a failed run's `<runId>` is the run's number in 
 | Kind | When it is the person's business | Gone when |
 |---|---|---|
 | Pull request | their review is asked (directly or through a team), or they opened it | closed or merged; the review request withdrawn |
-| Issue | assigned to them, or it mentions them | closed |
+| Issue | assigned to them, or it mentions them; optionally one they opened (a source setting, off by default) | closed |
 | Failed run | a CI run they started failed (newest per workflow and branch) | a later run of the same workflow on the same branch passed, or 7 days |
 
 ## Ids
@@ -33,7 +33,7 @@ Ids are relative to the host: Inbox keeps each source's items apart by plugin id
   starts with `CI failed · `; a run: `Run #5 failed (push) · <commit title>`.
 - `from`: who did that newest thing (else the author). `time`: when (else when it was opened).
 - `to`: `direct` (a review asked of the person, or assigned to them), `group` (a review asked of a team they are on),
-  `cc` (only mentioned). Absent on the person's own PRs and runs.
+  `cc` (only mentioned). Absent on the person's own PRs, issues (unless also assigned to them) and runs.
 - `mentionsMe`: the newest comment or review @-mentions the person (a whole `@login`).
 - `rev`: changes only when someone else did something: their comment or review, or a head going into failure (a new
   failing commit, a new run attempt). The person's own comments, reviews and green pushes never change it, so they
@@ -53,6 +53,7 @@ Rules match labels case-insensitively. A source sets every one that applies.
 | `my-pr` | the person opened the PR |
 | `assigned` | the issue is assigned to the person |
 | `mentioned` | the issue mentions the person |
+| `my-issue` | the person opened the issue |
 | `changes-requested` | the PR's review decision asks for changes |
 | `approved` | the PR is approved |
 | `ci:failed` | the head commit's checks failed (always on a run) |
